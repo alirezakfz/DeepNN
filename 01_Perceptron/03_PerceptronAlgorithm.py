@@ -70,7 +70,7 @@ def main():
     X=[]
     y=[]
     cl=[]
-    epoch=20
+    epoch=30
     with open('data.csv', 'r') as file:
         reader = csv.reader(file)
         for row in reader:
@@ -90,7 +90,7 @@ def main():
     x_min, x_max = min(X.T[0]), max(X.T[0])
     x_line=np.arange(x_min, x_max, 0.01)
    
-    
+    plt.figure()
     plt.scatter(X.T[0],X.T[1],color=cl)
     plot_points(X,y)
     bounds=trainPerceptronAlgorithm(X, y, 0.01,  epoch)
