@@ -10,7 +10,7 @@ Gets to 98.40% test accuracy after 20 epochs
 2 seconds per epoch on a K520 GPU.
 '''
 
-from __future__ import print_function
+# from __future__ import print_function
 
 import keras
 from keras.datasets import mnist
