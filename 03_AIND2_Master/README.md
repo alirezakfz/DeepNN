@@ -35,7 +35,7 @@
 	
 3. Enjoy!
 
-### IMDB movie review sentiment classification dataset
+### Exercise: IMDB movie review sentiment classification dataset
 
 https://keras.io/api/datasets/imdb/
 
