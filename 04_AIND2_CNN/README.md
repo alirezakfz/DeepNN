@@ -72,6 +72,51 @@ jupyter notebook
 
 9. (Optional) **If you are running the project on your local machine (and not using AWS)**, before running code, change the kernel to match the dog-project environment by using the drop-down menu (**Kernel > Change kernel > dog-project**). 
 
+
+
+
+</div>
+<div class="divider"></div><div class="ud-atom">
+  <h3></h3>
+  <div>
+  <h1 id="convolutional-layers-in-keras">Convolutional Layers in Keras</h1>
+<p>To create a convolutional layer in Keras, you must first import the necessary module:</p>
+<pre><code class="python language-python">from keras.layers import Conv2D</code></pre>
+<p>Then, you can create a convolutional layer by using the following format:</p>
+<pre><code class="python language-python">Conv2D(filters, kernel_size, strides, padding, activation='relu', input_shape)</code></pre>
+<h3 id="arguments">Arguments</h3>
+<p>You must pass the following arguments:</p>
+<ul>
+<li><code>filters</code> - The number of filters.</li>
+<li><code>kernel_size</code> - Number specifying both the height and width of the (square) convolution window.</li>
+</ul>
+<p>There are some additional, optional arguments that you might like to tune:</p>
+<ul>
+<li><code>strides</code> - The stride of the convolution.  If you don't specify anything, <code>strides</code> is set to <code>1</code>.</li>
+<li><code>padding</code> - One of <code>'valid'</code> or <code>'same'</code>.  If you don't specify anything, <code>padding</code> is set to <code>'valid'</code>.</li>
+<li><code>activation</code> - Typically <code>'relu'</code>. If you don't specify anything, no activation is applied.  You are <strong>strongly encouraged</strong> to add a ReLU activation function to <strong>every</strong> convolutional layer in your networks.</li>
+</ul>
+<p><strong>NOTE</strong>: It is possible to represent both <code>kernel_size</code> and <code>strides</code> as either a number or a tuple.</p>
+<p>When using your convolutional layer as the first layer (appearing after the input layer) in a model, you must provide an additional <code>input_shape</code> argument:</p>
+<ul>
+<li><code>input_shape</code> - Tuple specifying the height, width, and depth (in that order) of the input.</li>
+</ul>
+<p><strong>NOTE</strong>: Do <em><strong>not</strong></em> include the <code>input_shape</code> argument if the convolutional layer is <em>not</em> the first layer in your network.</p>
+<p>There are many other tunable arguments that you can set to change the behavior of your convolutional layers.  To read more about these, we recommend perusing the official <a href="https://keras.io/layers/convolutional/" target="_blank">documentation</a>.</p>
+<h3 id="example-1">Example #1</h3>
+<p>Say I'm constructing a CNN, and my input layer accepts grayscale images that are 200 by 200 pixels (corresponding to a 3D array with height 200, width 200, and depth 1).  Then, say I'd like the next layer to be a convolutional layer with 16 filters, each with a width and height of 2.  When performing the convolution, I'd like the filter to jump two pixels at a time.  I also don't want the filter to extend outside of the image boundaries; in other words, I don't want to pad the image with zeros.  Then, to construct this convolutional layer, I would use the following line of code:</p>
+<pre><code class="python language-python">Conv2D(filters=16, kernel_size=2, strides=2, activation='relu', input_shape=(200, 200, 1))</code></pre>
+<h3 id="example-2">Example #2</h3>
+<p>Say I'd like the next layer in my CNN to be a convolutional layer that takes the layer constructed in Example 1 as input.  Say I'd like my new layer to have 32 filters, each with a height and width of 3.  When performing the convolution, I'd like the filter to jump 1 pixel at a time.  I want the convolutional layer to see all regions of the previous layer, and so I don't mind if the filter hangs over the edge of the previous layer when it's performing the convolution.  Then, to construct this convolutional layer, I would use the following line of code:</p>
+<pre><code class="python language-python">Conv2D(filters=32, kernel_size=3, padding='same', activation='relu')</code></pre>
+<h3 id="example-3">Example #3</h3>
+<p>If you look up code online, it is also common to see convolutional layers in Keras in this format:</p>
+<pre><code class="python language-python">Conv2D(64, (2,2), activation='relu')</code></pre>
+<p>In this case, there are 64 filters, each with a size of 2x2, and the layer has a ReLU activation function.  The other arguments in the layer use the default values, so the convolution uses a stride of 1, and the padding has been set to 'valid'.</p>
+</div>
+
+
+
 </div>
 <div class="divider"></div><div class="ud-atom">
   <h3></h3>
