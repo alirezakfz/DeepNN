@@ -202,3 +202,67 @@ model.summary()</code></pre>
 </div>
 
 </div>
+
+
+
+<div class="divider"></div><div class="ud-atom">
+  <h3></h3>
+  <div>
+  <h1 id="max-pooling-layers-in-keras">Max Pooling Layers in Keras</h1>
+<p>To create a max pooling layer in Keras, you must first import the necessary module:</p>
+<pre><code>from keras.layers import MaxPooling2D</code></pre>
+<p>Then, you can create a convolutional layer by using the following format:</p>
+<pre><code>MaxPooling2D(pool_size, strides, padding)</code></pre>
+<h3 id="arguments">Arguments</h3>
+<p>You must include the following argument:</p>
+<ul>
+<li><code>pool_size</code> - Number specifying the height and width of the pooling window.</li>
+</ul>
+<p>There are some additional, optional arguments that you might like to tune:</p>
+<ul>
+<li><code>strides</code> - The vertical and horizontal stride.  If you don't specify anything, <code>strides</code> will default to <code>pool_size</code>.</li>
+<li><code>padding</code> - One of <code>'valid'</code> or <code>'same'</code>.  If you don't specify anything, <code>padding</code> is set to <code>'valid'</code>.</li>
+</ul>
+<p><strong>NOTE</strong>: It is possible to represent both <code>pool_size</code> and <code>strides</code> as either a number or a tuple.</p>
+<p>You are also encouraged to read the official <a href="https://keras.io/layers/pooling/#maxpooling2d" target="_blank">documentation</a>.</p>
+<h3 id="example">Example</h3>
+<p>Say I'm constructing a CNN, and I'd like to reduce the dimensionality of a convolutional layer by following it with a max pooling layer.  Say the convolutional layer has size <code>(100, 100, 15)</code>, and I'd like the max pooling layer to have size <code>(50, 50, 15)</code>.  I can do this by using a 2x2 window in my max pooling layer, with a stride of 2, which could be constructed in the following line of code:</p>
+<pre><code>    MaxPooling2D(pool_size=2, strides=2)</code></pre>
+<p>If you'd instead like to use a stride of 1, but still keep the size of the window at 2x2, then you'd use:</p>
+<pre><code>    MaxPooling2D(pool_size=2, strides=1)</code></pre>
+</div>
+
+</div>
+<div class="divider"></div><div class="ud-atom">
+  <h3></h3>
+  <div>
+  <h3 id="checking-the-dimensionality-of-max-pooling-layers">Checking the Dimensionality of Max Pooling Layers</h3>
+<p>Copy and paste the following code into a Python executable named <code>pool-dims.py</code>:</p>
+<pre><code class="python language-python">from keras.models import Sequential
+from keras.layers import MaxPooling2D
+
+model = Sequential()
+model.add(MaxPooling2D(pool_size=2, strides=2, input_shape=(100, 100, 15)))
+model.summary()</code></pre>
+<p>Run <code>python path/to/pool-dims.py</code> and look at the output. It should appear as follows:</p>
+</div>
+
+</div>
+<div class="divider"></div><div class="ud-atom">
+  <h3></h3>
+  <div>
+  <figure class="figure">
+    <img src="img/pooling-dims.png" alt="" class="img img-fluid">
+    <figcaption class="figure-caption">
+      
+    </figcaption>
+  </figure>
+</div>
+
+
+</div>
+<div class="divider"></div><div class="ud-atom">
+  <h3></h3>
+  <div>
+  <p>Feel free to change the arguments in your <code>pool-dims.py</code> file, and check how the shape of the max pooling layer changes.</p>
+</div>
